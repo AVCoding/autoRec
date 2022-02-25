@@ -12,7 +12,7 @@
   var  myID;
   //peer.on("open", function (id) {
     //document.getElementById("uuid").textContent = id;
-    document.getElementById("uuid").textContent = peer.id.toString();
+    document.getElementById("uuid").textContent = peer._id;
      console.log(peer);
     myID =  id;
   //});
