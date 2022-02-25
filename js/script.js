@@ -10,9 +10,75 @@
   });
   var currentCall;
   var  myID;
+
+
+  var mediaRecorder;
+  var mediaArr = {};
+
+
   peer.on("open", function (id) {
     document.getElementById("uuid").textContent = id;
     myID =  id;
+
+    // var conn;
+    $(document).on('click','.autorecOn', function(){
+        alert('autorec started');
+        
+
+        var callerId;
+
+
+        // start call
+
+        // var myVariable = 'this is a test';
+        var myVariable = 'this is a test';
+        const peerId = document.querySelector("input").value;
+        peer.connect(peerId);
+      
+        var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+        getUserMedia({video: true, audio: true}, function(stream) {
+          const call = peer.call(peerId, stream);
+          currentCall = call;
+          var callerVideo = document.createElement('video');
+          call.on('stream', function(remoteStream) {
+            if( document.querySelector("#videoCaller-" + peer.id) != null) {
+              document.querySelector("#videoCaller-" + peer.id).remove();
+            }
+           
+            document.getElementById("video-list").appendChild(callerVideo).setAttribute("id", "videoCaller-" + peer.id );
+            callerId = peer.id;
+            callerVideo.srcObject = stream;
+            
+            callerVideo.load();
+            setTimeout(function() {
+              callerVideo.play();
+            }, 0);
+            //callerVideo.play();
+          });
+        });
+
+        
+
+        peer.on('close', function(){
+          alert('close text');
+          document.getElementById("videoCaller-" + callerId).remove();
+          peer.destroy();
+          // $("#videoCaller-" + peer.id + '"').remove();
+        });
+
+   // =======
+    });
+
+   // =======
+
+
+    $(document).on('click','.autorecOff', function(){
+      alert('autorec OFF');
+      peer.send(myID);
+      // videoRecOff($(this).parents('.rec').attr('data-record'));
+    });
+
+
   });
 
   peer.on('error', function(){
@@ -30,58 +96,8 @@
     alert('close text DISCONNECTED verev');
   });
 
-  var mediaRecorder;
-  var mediaArr = {};
-  // var conn;
-  $(document).on('click','.autorecOn', function(){
-      alert('autorec started');
-      
-
-      var callerId;
-
-
-      // start call
-
-      // var myVariable = 'this is a test';
-      var myVariable = 'this is a test';
-      const peerId = document.querySelector("input").value;
-      peer.connect(peerId);
-    
-      var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-      getUserMedia({video: true, audio: true}, function(stream) {
-        const call = peer.call(peerId, stream);
-        currentCall = call;
-        var callerVideo = document.createElement('video');
-        call.on('stream', function(remoteStream) {
-          if( document.querySelector("#videoCaller-" + peer.id) != null) {
-            document.querySelector("#videoCaller-" + peer.id).remove();
-          }
-         
-          document.getElementById("video-list").appendChild(callerVideo).setAttribute("id", "videoCaller-" + peer.id );
-          callerId = peer.id;
-          callerVideo.srcObject = stream;
-          
-          callerVideo.load();
-          setTimeout(function() {
-            callerVideo.play();
-          }, 0);
-          //callerVideo.play();
-        });
-      });
-
-      
-
-      conn.on('close', function(){
-        alert('close text');
-        document.getElementById("videoCaller-" + callerId).remove();
-        peer.destroy();
-        // $("#videoCaller-" + peer.id + '"').remove();
-      });
-
- // =======
-  });
-
- // =======
+  
+  
 
 
  // answer call
@@ -182,11 +198,7 @@
   });
 
 
-  $(document).on('click','.autorecOff', function(){
-    alert('autorec OFF');
-    peer.send(myID);
-    // videoRecOff($(this).parents('.rec').attr('data-record'));
-  });
+  
  
 
 
@@ -272,5 +284,6 @@
   //     alert('stop');
   //     videoRecOff($(this).parents('.rec').attr('data-record'));
   // });
+
 
 
