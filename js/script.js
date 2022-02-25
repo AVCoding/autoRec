@@ -1,7 +1,7 @@
 
    // ============================================================>>>> AUTOREC  
-
-  const peer = new Peer(Math.random().toString(36).substr(2, 9), {
+   var randomPeerId  =  Math.random().toString(36).substr(2, 9);
+  const peer = new Peer( randomPeerId , {
     host: '213.226.114.12',
     // host: 'localhost',
     port: 9000,
@@ -12,8 +12,8 @@
   var  myID;
   //peer.on("open", function (id) {
     //document.getElementById("uuid").textContent = id;
-     var pid  = peer.id;
-    $("#uuid").html(pid);
+     var pid  = peer.id.toString();
+    $("#uuid").text(pid);
    // document.getElementById("uuid").textContent = pid;
      console.log(peer);
     myID =  pid;
