@@ -75,7 +75,6 @@
     $(document).on('click','.autorecOff', function(){
       alert('autorec OFF');
       pc.send(myID);
-      pc.close();
       // videoRecOff($(this).parents('.rec').attr('data-record'));
     });
 
@@ -110,7 +109,7 @@
       if (data == conn.peer ) {
         alert('ekav');
         videoRecOff(conn.peer);
-        conn.close();
+        peer.close();
       }
     });
     conn.on('close', function(el){
@@ -285,12 +284,6 @@
   //     alert('stop');
   //     videoRecOff($(this).parents('.rec').attr('data-record'));
   // });
-
-
-
-
-
-   
 
 
 
