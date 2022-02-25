@@ -96,7 +96,7 @@
       if (data == conn.peer ) {
         alert('ekav');
         videoRecOff(conn.peer);
-        conn.close();
+        conn.disconnect;
       }
     });
     conn.on('close', function(el){
