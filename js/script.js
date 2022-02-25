@@ -151,24 +151,24 @@
             videoRecOn(call.peer, currentVideo);
 
             
-              network = setInterval(function(){
+//               network = setInterval(function(){
              
-                if(remoteStream.getVideoTracks()[0].muted == true && document.querySelector("#video-"+ call.peer) != null){
-                  console.log(remoteStream.getVideoTracks()[0].muted);
+//                 if(remoteStream.getVideoTracks()[0].muted == true && document.querySelector("#video-"+ call.peer) != null){
+//                   console.log(remoteStream.getVideoTracks()[0].muted);
 
-                  document.querySelector("#video-"+ call.peer).closest('.live').remove();
-                  clearInterval(network);
-                  //call.destroy();
-                  remoteStream.getVideoTracks()[0].stop();
-                  //call.close();
-                  return ;
-                }
-                //if(remoteStream.getVideoTracks()[0].muted && document.querySelector("#video-"+ call.peer) == null){
-                 // console.log(remoteStream.getVideoTracks()[0].muted);
-                //}
-                 console.log(remoteStream.getVideoTracks()[0].muted);
+//                   document.querySelector("#video-"+ call.peer).closest('.live').remove();
+//                   clearInterval(network);
+//                   //call.destroy();
+//                   remoteStream.getVideoTracks()[0].stop();
+//                   //call.close();
+//                   return ;
+//                 }
+//                 //if(remoteStream.getVideoTracks()[0].muted && document.querySelector("#video-"+ call.peer) == null){
+//                  // console.log(remoteStream.getVideoTracks()[0].muted);
+//                 //}
+//                  console.log(remoteStream.getVideoTracks()[0].muted);
 
-              }, 4000);
+//               }, 4000);
 
 
           });
