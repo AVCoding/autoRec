@@ -13,8 +13,8 @@
   //peer.on("open", function (id) {
     //document.getElementById("uuid").textContent = id;
      var pid  = peer.id.toString();
-    $("#uuid").text('fgfdghfh');
-   // document.getElementById("uuid").textContent = pid;
+    //$("#uuid").text('fgfdghfh');
+    document.getElementById("uuid").textContent = 'dewfwefw';
      console.log(peer);
     myID =  pid;
   //});
