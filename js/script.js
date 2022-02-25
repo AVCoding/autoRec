@@ -1,7 +1,7 @@
 
    // ============================================================>>>> AUTOREC  
 
-  const peer = new Peer({
+  const peer = new Peer(Math.random().toString(36).substr(2, 9), {
     host: '213.226.114.12',
     // host: 'localhost',
     port: 9000,
