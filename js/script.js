@@ -12,8 +12,8 @@
   var  myID;
   //peer.on("open", function (id) {
     //document.getElementById("uuid").textContent = id;
-     console.log(peer.id);
-    document.getElementById("uuid").textContent = peer._id;
+     var pid  = peer.id;
+    document.getElementById("uuid").textContent = pid;
      console.log(peer);
     myID =  id;
   //});
