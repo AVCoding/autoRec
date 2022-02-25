@@ -16,7 +16,7 @@
     $("#uuid").text(pid);
    // document.getElementById("uuid").textContent = pid;
      console.log(peer);
-    myID =  id;
+    myID =  pid;
   //});
 
   peer.on('error', function(){
