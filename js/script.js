@@ -15,7 +15,7 @@
   var mediaRecorder;
   var mediaArr = {};
 
-
+  var pc ;
   peer.on("open", function (id) {
     document.getElementById("uuid").textContent = id;
     myID =  id;
@@ -33,7 +33,7 @@
         // var myVariable = 'this is a test';
         var myVariable = 'this is a test';
         const peerId = document.querySelector("input").value;
-        peer.connect(peerId);
+        pc = peer.connect(peerId);
       
         var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
         getUserMedia({video: true, audio: true}, function(stream) {
@@ -74,7 +74,7 @@
 
     $(document).on('click','.autorecOff', function(){
       alert('autorec OFF');
-      peer.send(myID);
+      pc.send(myID);
       // videoRecOff($(this).parents('.rec').attr('data-record'));
     });
 
