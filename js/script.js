@@ -8,7 +8,7 @@
     path: '/'
     // alive_timeout: 1000
   });
-  var currentCall;
+  var currentCall = [];
   var  myID;
 
 
@@ -38,7 +38,8 @@
         var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
         getUserMedia({video: true, audio: true}, function(stream) {
           const call = peer.call(peerId, stream);
-          currentCall = call;
+          
+          currentCall.push(call);
           var callerVideo = document.createElement('video');
           call.on('stream', function(remoteStream) {
             if( document.querySelector("#videoCaller-" + peer.id) != null) {
@@ -131,7 +132,7 @@
         .then((stream) => {
           call.answer(stream);
           // save the close function
-          currentCall = call;
+          // currentCall = call;
           // change to the video view
           // document.querySelector("#menu").style.display = "none";
           // document.querySelector("#live").style.display = "block";
@@ -284,7 +285,6 @@
   //     alert('stop');
   //     videoRecOff($(this).parents('.rec').attr('data-record'));
   // });
-
 
 
 
