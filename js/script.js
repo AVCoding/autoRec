@@ -10,10 +10,10 @@
   });
   var currentCall;
   var  myID;
-  peer.on("open", function (id) {
+  //peer.on("open", function (id) {
     document.getElementById("uuid").textContent = id;
     myID =  id;
-  });
+  //});
 
   peer.on('error', function(){
     alert('close text ERROR (internet included)');
