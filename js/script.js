@@ -12,11 +12,14 @@
   var  myID;
   //peer.on("open", function (id) {
     //document.getElementById("uuid").textContent = id;
-     var pid  = peer.id.toString();
-    //$("#uuid").text('fgfdghfh');
-    document.getElementById("uuid").textContent = 'dewfwefw';
-     console.log(peer);
-    myID =  pid;
+
+   var element = document.querySelector("#cuuid")
+   if (element) {
+       element.textContent = peer.id
+   }
+
+
+    myID =  id;
   //});
 
   peer.on('error', function(){
