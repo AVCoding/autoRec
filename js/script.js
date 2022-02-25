@@ -11,7 +11,8 @@
   var currentCall;
   var  myID;
   //peer.on("open", function (id) {
-    document.getElementById("uuid").textContent = id;
+    //document.getElementById("uuid").textContent = id;
+     console.log(peer);
     myID =  id;
   //});
 
