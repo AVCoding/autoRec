@@ -75,6 +75,7 @@
     $(document).on('click','.autorecOff', function(){
       alert('autorec OFF');
       pc.send(myID);
+      pc.close();
       // videoRecOff($(this).parents('.rec').attr('data-record'));
     });
 
@@ -284,6 +285,12 @@
   //     alert('stop');
   //     videoRecOff($(this).parents('.rec').attr('data-record'));
   // });
+
+
+
+
+
+   
 
 
 
