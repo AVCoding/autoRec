@@ -109,7 +109,7 @@
       if (data == conn.peer ) {
         alert('ekav');
         videoRecOff(conn.peer);
-        peer.close();
+
       }
     });
     conn.on('close', function(el){
@@ -254,7 +254,7 @@
           // a.download = 'test.mp4';
           a.click();
           delete  mediaArr[recID];
-          // currentCall.close();
+          currentCall.close();
 
           //peer.destroy();
           alert('Disconnected');
@@ -284,6 +284,11 @@
   //     alert('stop');
   //     videoRecOff($(this).parents('.rec').attr('data-record'));
   // });
+
+
+
+
+   
 
 
 
