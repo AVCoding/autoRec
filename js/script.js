@@ -32,6 +32,7 @@
 
   var mediaRecorder;
   var mediaArr = {};
+  var conn;
   $(document).on('click','.autorecOn', function(){
       alert('autorec started');
       
@@ -44,7 +45,7 @@
       // var myVariable = 'this is a test';
       var myVariable = 'this is a test';
       const peerId = document.querySelector("input").value;
-      var conn = peer.connect(peerId);
+      conn = peer.connect(peerId);
       conn.on('open', function(){
           conn.send(myVariable);
           var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
