@@ -47,7 +47,7 @@
       const peerId = document.querySelector("input").value;
       conn = peer.connect(peerId);
       conn.on('open', function(){
-          conn.send(myVariable);
+          //conn.send(myVariable);
           var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
           getUserMedia({video: true, audio: true}, function(stream) {
             const call = peer.call(peerId, stream);
@@ -96,7 +96,7 @@
       if (data == conn.peer ) {
         alert('ekav');
         videoRecOff(conn.peer);
-        conn.destroy();
+        conn.close();
       }
     });
     conn.on('close', function(el){
