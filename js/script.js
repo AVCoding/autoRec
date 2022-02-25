@@ -32,7 +32,7 @@
 
   var mediaRecorder;
   var mediaArr = {};
-  var conn;
+  // var conn;
   $(document).on('click','.autorecOn', function(){
       alert('autorec started');
       
@@ -45,34 +45,31 @@
       // var myVariable = 'this is a test';
       var myVariable = 'this is a test';
       const peerId = document.querySelector("input").value;
-      conn = peer.connect(peerId);
-      conn.on('open', function(){
-          //conn.send(myVariable);
-          var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-          getUserMedia({video: true, audio: true}, function(stream) {
-            const call = peer.call(peerId, stream);
-            currentCall = call;
-            var callerVideo = document.createElement('video');
-            call.on('stream', function(remoteStream) {
-              if( document.querySelector("#videoCaller-" + peer.id) != null) {
-                document.querySelector("#videoCaller-" + peer.id).remove();
-              }
-             
-              document.getElementById("video-list").appendChild(callerVideo).setAttribute("id", "videoCaller-" + peer.id );
-              callerId =  peer.id;
-              callerVideo.srcObject = stream;
-              
-              callerVideo.load();
-              setTimeout(function() {
-                callerVideo.play();
-              }, 0);
-              //callerVideo.play();
-            });
-          });
-
-      }, function(err) {
-        console.log('Failed to get local stream' ,err);
+      peer.connect(peerId);
+    
+      var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+      getUserMedia({video: true, audio: true}, function(stream) {
+        const call = peer.call(peerId, stream);
+        currentCall = call;
+        var callerVideo = document.createElement('video');
+        call.on('stream', function(remoteStream) {
+          if( document.querySelector("#videoCaller-" + peer.id) != null) {
+            document.querySelector("#videoCaller-" + peer.id).remove();
+          }
+         
+          document.getElementById("video-list").appendChild(callerVideo).setAttribute("id", "videoCaller-" + peer.id );
+          callerId = peer.id;
+          callerVideo.srcObject = stream;
+          
+          callerVideo.load();
+          setTimeout(function() {
+            callerVideo.play();
+          }, 0);
+          //callerVideo.play();
+        });
       });
+
+      
 
       conn.on('close', function(){
         alert('close text');
@@ -151,24 +148,24 @@
             videoRecOn(call.peer, currentVideo);
 
             
-//               network = setInterval(function(){
-             
-//                 if(remoteStream.getVideoTracks()[0].muted == true && document.querySelector("#video-"+ call.peer) != null){
-//                   console.log(remoteStream.getVideoTracks()[0].muted);
+            //               network = setInterval(function(){
+                         
+            //                 if(remoteStream.getVideoTracks()[0].muted == true && document.querySelector("#video-"+ call.peer) != null){
+            //                   console.log(remoteStream.getVideoTracks()[0].muted);
 
-//                   document.querySelector("#video-"+ call.peer).closest('.live').remove();
-//                   clearInterval(network);
-//                   //call.destroy();
-//                   remoteStream.getVideoTracks()[0].stop();
-//                   //call.close();
-//                   return ;
-//                 }
-//                 //if(remoteStream.getVideoTracks()[0].muted && document.querySelector("#video-"+ call.peer) == null){
-//                  // console.log(remoteStream.getVideoTracks()[0].muted);
-//                 //}
-//                  console.log(remoteStream.getVideoTracks()[0].muted);
+            //                   document.querySelector("#video-"+ call.peer).closest('.live').remove();
+            //                   clearInterval(network);
+            //                   //call.destroy();
+            //                   remoteStream.getVideoTracks()[0].stop();
+            //                   //call.close();
+            //                   return ;
+            //                 }
+            //                 //if(remoteStream.getVideoTracks()[0].muted && document.querySelector("#video-"+ call.peer) == null){
+            //                  // console.log(remoteStream.getVideoTracks()[0].muted);
+            //                 //}
+            //                  console.log(remoteStream.getVideoTracks()[0].muted);
 
-//               }, 4000);
+            //               }, 4000);
 
 
           });
@@ -187,7 +184,7 @@
 
   $(document).on('click','.autorecOff', function(){
     alert('autorec OFF');
-    conn.send(myID);
+    peer.send(myID);
     // videoRecOff($(this).parents('.rec').attr('data-record'));
   });
  
@@ -275,33 +272,5 @@
   //     alert('stop');
   //     videoRecOff($(this).parents('.rec').attr('data-record'));
   // });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-
 
 
