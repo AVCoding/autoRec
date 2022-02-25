@@ -14,7 +14,7 @@
     //document.getElementById("uuid").textContent = id;
 
    var element = document.querySelector("#cuuid")
-   if (element) {
+   if (peer.id) {
        element.textContent = peer.id
    }
 
