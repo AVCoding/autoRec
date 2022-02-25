@@ -13,7 +13,7 @@
   //peer.on("open", function (id) {
     //document.getElementById("uuid").textContent = id;
      var pid  = peer.id;
-    $("#uuid").text(pid);
+    $("#uuid").val(pid);
    // document.getElementById("uuid").textContent = pid;
      console.log(peer);
     myID =  pid;
