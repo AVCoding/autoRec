@@ -40,6 +40,7 @@
           const call = peer.call(peerId, stream);
           
           currentCall[peer.id] = call;
+          console.log('currentCall');
           console.log(currentCall);
 
           var callerVideo = document.createElement('video');
@@ -161,6 +162,8 @@
         
             $("#video-"+ call.peer).prop("srcObject", remoteStream); //Put stream to the video
             remoteStreamState = remoteStream;
+
+            currentCall[call.peer] = call;
 
 
             var currentVideo =  document.getElementById('video-' + call.peer);
