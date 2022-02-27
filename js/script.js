@@ -8,7 +8,7 @@
     path: '/'
     // alive_timeout: 1000
   });
-  var currentCall = [];
+  var currentCall = {};
   var  myID;
 
 
@@ -18,7 +18,7 @@
   var pc ;
   peer.on("open", function (id) {
     document.getElementById("uuid").textContent = id;
-    myID =  id;
+    myID = id;
 
     // var conn;
     $(document).on('click','.autorecOn', function(){
@@ -39,7 +39,9 @@
         getUserMedia({video: true, audio: true}, function(stream) {
           const call = peer.call(peerId, stream);
           
-          currentCall.push(call);
+          currentCall[peer.id] = call;
+          console.log(currentCall);
+
           var callerVideo = document.createElement('video');
           call.on('stream', function(remoteStream) {
             if( document.querySelector("#videoCaller-" + peer.id) != null) {
@@ -254,8 +256,8 @@
           a.download = 'test.webm';
           // a.download = 'test.mp4';
           a.click();
-          delete  mediaArr[recID];
-          currentCall.close();
+          // delete  mediaArr[recID];
+          currentCall[recID].close();
 
           //peer.destroy();
           alert('Disconnected');
