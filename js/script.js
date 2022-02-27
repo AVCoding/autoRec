@@ -262,7 +262,7 @@
           // delete  mediaArr[recID];
           currentCall[recID].close();
 
-          peer.destroy();
+          //peer.destroy();
           alert('Disconnected');
         }
 
