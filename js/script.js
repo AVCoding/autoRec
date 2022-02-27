@@ -118,7 +118,7 @@
     });
     conn.on('close', function(el){
       alert('conn close text');
-      document.getElementById("video-" + conn.peer).closest('.live').remove();
+      // document.getElementById("video-" + conn.peer).closest('.live').remove();
     });   
     conn.on('disconnected', function(){
       alert('conn disconnected');
@@ -261,6 +261,9 @@
           a.click();
           // delete  mediaArr[recID];
           currentCall[recID].close();
+
+          document.getElementById("video-" + recID).closest('.live').remove();
+
 
           //peer.destroy();
           alert('Disconnected');
