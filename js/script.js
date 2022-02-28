@@ -21,8 +21,6 @@
     myID = id;
 
     // var conn;
-    
-
    // =======
 
   });
@@ -30,7 +28,7 @@
 
 
 
-   $(document).on('click','.autorecOff', function(){
+  $(document).on('click','.autorecOff', function(){
     alert('autorec OFF');
     pc.send(myID);
     document.getElementById("videoCaller-" + myID).remove();
@@ -62,6 +60,7 @@
 
         var callerVideo = document.createElement('video');
         call.on('stream', function(remoteStream) {
+
           if( document.querySelector("#videoCaller-" + peer.id) != null) {
             document.querySelector("#videoCaller-" + peer.id).remove();
           }
@@ -77,8 +76,6 @@
           //callerVideo.play();
         });
       });
-
-      
 
       peer.on('close', function(){
         alert('close text');
@@ -96,13 +93,7 @@
     if (document.querySelector("#videoCaller-" + peer.id)) {
       document.querySelector("#videoCaller-" + peer.id).remove();
     }
-    // document.querySelector("#videoCaller-" + peer.id).remove();
-    
-    if(navigator.onLine){
-      alert('online');
-    } else {
-      alert('offline');
-    }  
+    // document.querySelector("#videoCaller-" + peer.id).remove(); 
   });
 
   peer.on('disconnected', function(){
@@ -193,7 +184,7 @@
                 clearInterval(network);
                 //call.destroy();
                 remoteStream.getVideoTracks()[0].stop();
-                //videoRecOff(call.peer);
+                // videoRecOff(call.peer);
                 //call.close();
                 return ;
               }
@@ -281,7 +272,7 @@
 
 
           //peer.destroy();
-          alert('Disconnected');
+          alert('End videoRecOff');
         }
 
       }
