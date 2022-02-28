@@ -115,10 +115,32 @@
 
  // answer call
 
+  peer.on('connection', function(conn) {
+    conn.on('data', function(data){
+      // Will print 'this is a test'
+      console.log('data');
+      if (data == conn.peer ) {
+        alert('ekav');
+        videoRecOff(conn.peer);
+      }
+    });
+
+    conn.on('close', function(el){
+      alert('conn close text');
+      videoRecOff(conn.peer);
+
+      if (document.getElementById("video-" + conn.peer) != null) {
+        document.getElementById("video-" + conn.peer).closest('.live').remove();
+      }
+      // document.getElementById("video-" + conn.peer).closest('.live').remove();
+    });   
+    conn.on('disconnected', function(){
+      alert('conn disconnected');
+    });
+  });
 
 
   var network;
-
   peer.on("call", (call) => {
     if (confirm(`Accept call from ${call.peer}?`)) {
       // grab the camera and mic
@@ -197,30 +219,7 @@
   });
 
 
-  peer.on('connection', function(conn) {
-    conn.on('data', function(data){
-      // Will print 'this is a test'
-      console.log('data');
-      if (data == conn.peer ) {
-        alert('ekav');
-        videoRecOff(conn.peer);
-
-      }
-    });
-    conn.on('close', function(el){
-      alert('conn close text');
-      videoRecOff(conn.peer);
-
-      if (document.getElementById("video-" + conn.peer) != null) {
-        document.getElementById("video-" + conn.peer).closest('.live').remove();
-      }
-      
-      // document.getElementById("video-" + conn.peer).closest('.live').remove();
-    });   
-    conn.on('disconnected', function(){
-      alert('conn disconnected');
-    });
-  });
+  
  
 
 
