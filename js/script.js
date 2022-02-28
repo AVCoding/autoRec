@@ -208,10 +208,15 @@
 
           });
 
-        })
-        .catch((err) => {
-          console.log("Failed to get local stream:", err);
-        });
+        }
+        , function(err) {
+            console.log('Failed to get local stream' ,err);
+          });
+
+        // )
+        // .catch((err) => {
+        //   console.log("Failed to get local stream:", err);
+        // });
     
     } else {
       // user rejected the call, close it
