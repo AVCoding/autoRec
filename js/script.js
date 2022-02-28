@@ -22,13 +22,17 @@
 
       peer.on('error', function(){
         alert('close text ERROR (internet included)');
-        document.querySelector("#videoCaller-" + peer.id).remove();
+        if (document.querySelector("#videoCaller-" + peer.id) != null) {
+          document.querySelector("#videoCaller-" + peer.id).remove();
+
+        }
+        // document.querySelector("#videoCaller-" + peer.id).remove();
         
-        if(navigator.onLine){
-          alert('online');
-        } else {
-          alert('offline');
-        }  
+        // if(navigator.onLine){
+        //   alert('online');
+        // } else {
+        //   alert('offline');
+        // }  
       });
 
       peer.on('disconnected', function(){
@@ -529,7 +533,7 @@ peer.on("call", (call) => {
                     //call.destroy();
                     remoteStream.getVideoTracks()[0].stop();
                     //call.close();
-                    return ;
+                    // return ;
                   }
                   //if(remoteStream.getVideoTracks()[0].muted && document.querySelector("#video-"+ call.peer) == null){
                    // console.log(remoteStream.getVideoTracks()[0].muted);
