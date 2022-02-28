@@ -2,7 +2,7 @@
    // ============================================================>>>> AUTOREC  
   var randomPeerId  =  Math.random().toString(36).substr(2, 9);
   const peer = new Peer( randomPeerId , {
-    host: '213.226.114.12',
+    host: 'ws://213.226.114.12',
     // host: 'localhost',
     port: 9000,
     path: '/'
