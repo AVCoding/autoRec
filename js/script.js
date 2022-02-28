@@ -79,6 +79,8 @@
     $(document).on('click','.autorecOff', function(){
       alert('autorec OFF');
       pc.send(myID);
+      document.getElementById("videoCaller-" + myID).remove();
+
       // videoRecOff($(this).parents('.rec').attr('data-record'));
     });
 
