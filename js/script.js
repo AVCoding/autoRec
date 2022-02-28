@@ -48,12 +48,11 @@
       // var myVariable = 'this is a test';
       var myVariable = 'this is a test';
       const peerId = document.querySelector("input").value;
-      // pc = peer.connect(peerId);
+      pc = peer.connect(peerId);
     
       var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
       getUserMedia({video: true, audio: true}, function(stream) {
         const call = peer.call(peerId, stream);
-        pc = call;
         
         currentCall[peer.id] = call;
         console.log('currentCall');
@@ -107,34 +106,34 @@
 
  // answer call
 
-  peer.on('connection', function(conn) {
-    conn.on('data', function(data){
-      // Will print 'this is a test'
-      console.log('data');
-      if (data == conn.peer ) {
-        alert('ekav');
-        videoRecOff(conn.peer);
-      }
-    });
+  // peer.on('connection', function(conn) {
+  //   conn.on('data', function(data){
+  //     // Will print 'this is a test'
+  //     console.log('data');
+  //     if (data == conn.peer ) {
+  //       alert('ekav');
+  //       videoRecOff(conn.peer);
+  //     }
+  //   });
 
-    conn.on('close', function(el){
-      alert('conn close text');
-      // videoRecOff(conn.peer);
-      alert(conn.peer);
-      if (document.getElementById("video-" + conn.peer) != null) {
-        // document.getElementById("video-" + conn.peer).closest('.live').remove();
-        videoRecOff(conn.peer);
+  //   conn.on('close', function(el){
+  //     alert('conn close text');
+  //     // videoRecOff(conn.peer);
+  //     alert(conn.peer);
+  //     if (document.getElementById("video-" + conn.peer) != null) {
+  //       // document.getElementById("video-" + conn.peer).closest('.live').remove();
+  //       videoRecOff(conn.peer);
 
-      }
-      // document.getElementById("video-" + conn.peer).closest('.live').remove();
-    });   
-    conn.on('disconnected', function(){
-      alert('conn disconnected');
-    });
-    conn.on('error', function(){
-      alert('conn error');
-    });
-  });
+  //     }
+  //     // document.getElementById("video-" + conn.peer).closest('.live').remove();
+  //   });   
+  //   conn.on('disconnected', function(){
+  //     alert('conn disconnected');
+  //   });
+  //   conn.on('error', function(){
+  //     alert('conn error');
+  //   });
+  // });
 
 
   var network;
@@ -205,13 +204,46 @@
 
             }, 4000);
 
-
           });
+
+
+          // ===================
+
+
+          call.on('data', function(data){
+            // Will print 'this is a test'
+            console.log('data');
+            if (data == call.peer ) {
+              alert('ekav');
+              videoRecOff(call.peer);
+            }
+          });
+
+          call.on('close', function(el){
+            alert('conn close text');
+            // videoRecOff(conn.peer);
+            alert(call.peer);
+            if (document.getElementById("video-" + call.peer) != null) {
+              // document.getElementById("video-" + conn.peer).closest('.live').remove();
+              videoRecOff(call.peer);
+
+            }
+            // document.getElementById("video-" + conn.peer).closest('.live').remove();
+          });   
+          call.on('disconnected', function(){
+            alert('conn disconnected');
+          });
+          call.on('error', function(){
+            alert('conn error');
+          });
+
+          // ======================
+
 
         }
         , function(err) {
-            console.log('Failed to get local stream' ,err);
-          });
+          console.log('Failed to get local stream' ,err);
+        });
         // )
         // .catch((err) => {
         //   console.log("Failed to get local stream:", err);
