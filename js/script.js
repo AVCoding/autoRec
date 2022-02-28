@@ -120,9 +120,9 @@
       alert('conn close text');
       videoRecOff(conn.peer);
 
-      if (document.getElementById("video-" + conn.peer) != null) {
-        document.getElementById("video-" + conn.peer).closest('.live').remove();
-      }
+      // if (document.getElementById("video-" + conn.peer) != null) {
+      //   document.getElementById("video-" + conn.peer).closest('.live').remove();
+      // }
       // document.getElementById("video-" + conn.peer).closest('.live').remove();
     });   
     conn.on('disconnected', function(){
