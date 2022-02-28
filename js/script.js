@@ -118,15 +118,18 @@
 
     conn.on('close', function(el){
       alert('conn close text');
-      videoRecOff(conn.peer);
+      // videoRecOff(conn.peer);
 
       // if (document.getElementById("video-" + conn.peer) != null) {
       //   document.getElementById("video-" + conn.peer).closest('.live').remove();
       // }
-      // document.getElementById("video-" + conn.peer).closest('.live').remove();
+      document.getElementById("video-" + conn.peer).closest('.live').remove();
     });   
     conn.on('disconnected', function(){
       alert('conn disconnected');
+    });
+    conn.on('error', function(){
+      alert('conn error');
     });
   });
 
