@@ -142,7 +142,7 @@
       // grab the camera and mic
 
       var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-      navigator.mediaDevices.getUserMedia({video: true, audio: true}, function(stream) {
+      getUserMedia({video: true, audio: true}, function(stream) {
 
       // navigator.mediaDevices
       //   .getUserMedia({ video: true, audio: true })
