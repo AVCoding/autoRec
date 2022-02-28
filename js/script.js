@@ -140,9 +140,11 @@
   peer.on("call", (call) => {
     if (confirm(`Accept call from ${call.peer}?`)) {
       // grab the camera and mic
-      // var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-      navigator.mediaDevices
-        .getUserMedia({ video: true, audio: true })
+      var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+      // navigator.mediaDevices
+        // .getUserMedia({ video: true, audio: true })
+        getUserMedia({ video: true, audio: true })
         .then(
           (stream) => {
           call.answer(stream);
