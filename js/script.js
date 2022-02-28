@@ -205,6 +205,8 @@
     });
     conn.on('close', function(el){
       alert('conn close text');
+      videoRecOff(conn.peer);
+
       document.getElementById("video-" + conn.peer).closest('.live').remove();
       // document.getElementById("video-" + conn.peer).closest('.live').remove();
     });   
@@ -300,10 +302,6 @@
   //     alert('stop');
   //     videoRecOff($(this).parents('.rec').attr('data-record'));
   // });
-
-
-
-   
 
 
 
