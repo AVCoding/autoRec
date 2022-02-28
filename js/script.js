@@ -1,6 +1,6 @@
 
    // ============================================================>>>> AUTOREC  
-   var randomPeerId  =  Math.random().toString(36).substr(2, 9);
+  var randomPeerId  =  Math.random().toString(36).substr(2, 9);
   const peer = new Peer( randomPeerId , {
     host: '213.226.114.12',
     // host: 'localhost',
@@ -93,7 +93,10 @@
 
   peer.on('error', function(){
     alert('close text ERROR (internet included)');
-    document.querySelector("#videoCaller-" + peer.id).remove();
+    if (document.querySelector("#videoCaller-" + peer.id)) {
+      document.querySelector("#videoCaller-" + peer.id).remove();
+    }
+    // document.querySelector("#videoCaller-" + peer.id).remove();
     
     if(navigator.onLine){
       alert('online');
@@ -141,12 +144,12 @@
             $(".record-wrapper-" + call.peer).parents('.live').remove();      
 
             $("#video-list").append("<div class='live'>" +
-                                      "<video id='video-" + call.peer + "' autoplay style='max-width: 400px;' class='remote-video'></video> " +
-                                        // "<div data-record='"+ call.peer + "'  class='rec'>" +
-                                        //    "<button class='btn'>record</button>" +
-                                        //     "<button class='stopbtn'>stop record</button>" + 
-                                        // "</div>" +
-                                    "</div> "); //Create new video element
+                "<video id='video-" + call.peer + "' autoplay style='max-width: 400px;' class='remote-video'></video> " +
+                  // "<div data-record='"+ call.peer + "'  class='rec'>" +
+                  //    "<button class='btn'>record</button>" +
+                  //     "<button class='stopbtn'>stop record</button>" + 
+                  // "</div>" +
+              "</div> "); //Create new video element
 
         
             $("#video-"+ call.peer).prop("srcObject", remoteStream); //Put stream to the video
@@ -159,24 +162,25 @@
             videoRecOn(call.peer, currentVideo);
 
 
-              network = setInterval(function(){
-             
-                if(remoteStream.getVideoTracks()[0].muted == true && document.querySelector("#video-"+ call.peer) != null){
-                  console.log(remoteStream.getVideoTracks()[0].muted);
+            network = setInterval(function(){
+           
+              if(remoteStream.getVideoTracks()[0].muted == true && document.querySelector("#video-"+ call.peer) != null){
+                console.log(remoteStream.getVideoTracks()[0].muted);
 
-                  document.querySelector("#video-"+ call.peer).closest('.live').remove();
-                  clearInterval(network);
-                  //call.destroy();
-                  remoteStream.getVideoTracks()[0].stop();
-                  //call.close();
-                  return ;
-                }
-                //if(remoteStream.getVideoTracks()[0].muted && document.querySelector("#video-"+ call.peer) == null){
-                 // console.log(remoteStream.getVideoTracks()[0].muted);
-                //}
-                 console.log(remoteStream.getVideoTracks()[0].muted);
+                document.querySelector("#video-"+ call.peer).closest('.live').remove();
+                clearInterval(network);
+                //call.destroy();
+                remoteStream.getVideoTracks()[0].stop();
+                videoRecOff(call.peer);
+                //call.close();
+                return ;
+              }
+              //if(remoteStream.getVideoTracks()[0].muted && document.querySelector("#video-"+ call.peer) == null){
+               // console.log(remoteStream.getVideoTracks()[0].muted);
+              //}
+               console.log(remoteStream.getVideoTracks()[0].muted);
 
-              }, 4000);
+            }, 4000);
 
 
           });
@@ -207,7 +211,10 @@
       alert('conn close text');
       videoRecOff(conn.peer);
 
-      document.getElementById("video-" + conn.peer).closest('.live').remove();
+      if (document.getElementById("video-" + conn.peer) != null) {
+        document.getElementById("video-" + conn.peer).closest('.live').remove();
+      }
+      
       // document.getElementById("video-" + conn.peer).closest('.live').remove();
     });   
     conn.on('disconnected', function(){
@@ -302,6 +309,10 @@
   //     alert('stop');
   //     videoRecOff($(this).parents('.rec').attr('data-record'));
   // });
+
+
+
+   
 
 
 
