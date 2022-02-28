@@ -2,7 +2,7 @@
    // ============================================================>>>> AUTOREC  
   var randomPeerId  =  Math.random().toString(36).substr(2, 9);
   const peer = new Peer( randomPeerId , {
-    host: '213.226.114.12',
+    host: 'ws://213.226.114.12',
     // host: 'localhost',
     port: 9000,
     path: '/'
@@ -119,7 +119,7 @@
     conn.on('close', function(el){
       alert('conn close text');
       // videoRecOff(conn.peer);
-
+      alert(conn.peer);
       if (document.getElementById("video-" + conn.peer) != null) {
         // document.getElementById("video-" + conn.peer).closest('.live').remove();
         videoRecOff(conn.peer);
@@ -140,9 +140,14 @@
   peer.on("call", (call) => {
     if (confirm(`Accept call from ${call.peer}?`)) {
       // grab the camera and mic
-      navigator.mediaDevices
-        .getUserMedia({ video: true, audio: true })
-        .then((stream) => {
+
+      navigator.mediaDevices.getUserMedia({video: true, audio: true}, function(stream) {
+
+      // navigator.mediaDevices
+      //   .getUserMedia({ video: true, audio: true })
+      //   .then(
+      //     (stream) => 
+      //     {
           call.answer(stream);
           // save the close function
           // currentCall = call;
