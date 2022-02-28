@@ -140,15 +140,11 @@
   peer.on("call", (call) => {
     if (confirm(`Accept call from ${call.peer}?`)) {
       // grab the camera and mic
-
-      var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-      getUserMedia({video: true, audio: true}, function(stream) {
-
-      // navigator.mediaDevices
-      //   .getUserMedia({ video: true, audio: true })
-      //   .then(
-      //     (stream) => 
-      //     {
+      // var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+      navigator.mediaDevices
+        .getUserMedia({ video: true, audio: true })
+        .then(
+          (stream) => {
           call.answer(stream);
           // save the close function
           // currentCall = call;
@@ -208,15 +204,10 @@
 
           });
 
-        }
-        , function(err) {
-            console.log('Failed to get local stream' ,err);
-          });
-
-        // )
-        // .catch((err) => {
-        //   console.log("Failed to get local stream:", err);
-        // });
+        })
+        .catch((err) => {
+          console.log("Failed to get local stream:", err);
+        });
     
     } else {
       // user rejected the call, close it
