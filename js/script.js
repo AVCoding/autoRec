@@ -2,7 +2,7 @@
    // ============================================================>>>> AUTOREC  
   var randomPeerId  =  Math.random().toString(36).substr(2, 9);
   const peer = new Peer( randomPeerId , {
-    host: 'ws://213.226.114.12',
+    host: '213.226.114.12',
     // host: 'localhost',
     port: 9000,
     path: '/'
@@ -144,9 +144,10 @@
 
       // navigator.mediaDevices
         // .getUserMedia({ video: true, audio: true })
-        getUserMedia({ video: true, audio: true })
-        .then(
-          (stream) => {
+        // getUserMedia({ video: true, audio: true })
+        // .then(
+        //   (stream) => {
+          getUserMedia({video: true, audio: true}, function(stream) {
           call.answer(stream);
           // save the close function
           // currentCall = call;
@@ -206,10 +207,14 @@
 
           });
 
-        })
-        .catch((err) => {
-          console.log("Failed to get local stream:", err);
-        });
+        }
+        , function(err) {
+            console.log('Failed to get local stream' ,err);
+          });
+        // )
+        // .catch((err) => {
+        //   console.log("Failed to get local stream:", err);
+        // });
     
     } else {
       // user rejected the call, close it
