@@ -20,8 +20,9 @@
         document.getElementById("uuid").textContent = id;
       });
 
-      peer.on('error', function(){
+      peer.on('error', function(el){
         alert('close text ERROR (internet included)');
+        console.log(el);
         if (document.querySelector("#videoCaller-" + peer.id) != null) {
           document.querySelector("#videoCaller-" + peer.id).remove();
 
