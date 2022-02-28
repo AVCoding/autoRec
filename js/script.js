@@ -121,7 +121,9 @@
       // videoRecOff(conn.peer);
 
       if (document.getElementById("video-" + conn.peer) != null) {
-        document.getElementById("video-" + conn.peer).closest('.live').remove();
+        // document.getElementById("video-" + conn.peer).closest('.live').remove();
+        videoRecOff(conn.peer);
+
       }
       // document.getElementById("video-" + conn.peer).closest('.live').remove();
     });   
