@@ -48,11 +48,12 @@
       // var myVariable = 'this is a test';
       var myVariable = 'this is a test';
       const peerId = document.querySelector("input").value;
-      pc = peer.connect(peerId);
+      // pc = peer.connect(peerId);
     
       var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
       getUserMedia({video: true, audio: true}, function(stream) {
         const call = peer.call(peerId, stream);
+        pc = call;
         
         currentCall[peer.id] = call;
         console.log('currentCall');
