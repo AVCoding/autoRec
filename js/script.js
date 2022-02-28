@@ -193,7 +193,7 @@
                 clearInterval(network);
                 //call.destroy();
                 remoteStream.getVideoTracks()[0].stop();
-                videoRecOff(call.peer);
+                //videoRecOff(call.peer);
                 //call.close();
                 return ;
               }
