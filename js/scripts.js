@@ -87,14 +87,9 @@
 
   peer.on('error', function(){
     alert('close text ERROR (internet included)');
-    console.log(err);
+    alert(peer.id);
     document.querySelector("#videoCaller-" + peer.id).remove();
     
-    if(navigator.onLine){
-      alert('online');
-    } else {
-      alert('offline');
-    }  
   });
 
   peer.on('disconnected', function(){
@@ -129,7 +124,7 @@
     });
   });
 
-  var network;
+  // var network;
 
   peer.on("call", (call) => {
     if (confirm(`Accept call from ${call.peer}?`)) {
@@ -182,26 +177,26 @@
             });  
 
             
-                          network = setInterval(function(){
-                         
-                            if(remoteStream.getVideoTracks()[0].muted == true && document.querySelector("#video-"+ call.peer) != null){
-                              console.log(remoteStream.getVideoTracks()[0].muted);
+                var network = setInterval(function(){
+               
+                  if(remoteStream.getVideoTracks()[0].muted == true && document.querySelector("#video-"+ call.peer) != null){
+                    console.log(remoteStream.getVideoTracks()[0].muted);
 
-                              document.querySelector("#video-"+ call.peer).closest('.live').remove();
-                              clearInterval(network);
-                              //call.destroy();
-                              remoteStream.getVideoTracks()[0].stop();
-                              //call.close();
-                              return "";
-                            }
-                            else{
-                            //if(remoteStream.getVideoTracks()[0].muted && document.querySelector("#video-"+ call.peer) == null){
-                             // console.log(remoteStream.getVideoTracks()[0].muted);
-                            //}
-                             console.log(remoteStream.getVideoTracks()[0].muted);
-                            }
+                    document.querySelector("#video-"+ call.peer).closest('.live').remove();
+                    clearInterval(network);
+                    //call.destroy();
+                    remoteStream.getVideoTracks()[0].stop();
+                    //call.close();
+                    return "";
+                  }
+                  else{
+                  //if(remoteStream.getVideoTracks()[0].muted && document.querySelector("#video-"+ call.peer) == null){
+                   // console.log(remoteStream.getVideoTracks()[0].muted);
+                  //}
+                   console.log(remoteStream.getVideoTracks()[0].muted);
+                  }
 
-                          }, 4000);
+                }, 4000);
 
 
           });
