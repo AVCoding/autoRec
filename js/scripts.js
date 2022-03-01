@@ -46,7 +46,7 @@
           var callerVideo = document.createElement('video');
           call.on('stream', function(remoteStream) {
             if( document.querySelector("#videoCaller-" + peer.id) != null) {
-              document.querySelector("#videoCaller-" + peer.id).remove();
+              document.querySelector("#videoCaller-" + peer.id).remove(); 
             }
            
             document.getElementById("video-list").appendChild(callerVideo).setAttribute("id", "videoCaller-" + peer.id );
