@@ -119,7 +119,7 @@
     });
     conn.on('close', function(el){
       alert('conn close text');
-      document.getElementById("video-" + conn.peer).closest('.live').remove();
+      //document.getElementById("video-" + conn.peer).closest('.live').remove();
     });   
     conn.on('disconnected', function(){
       alert('conn disconnected');
