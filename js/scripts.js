@@ -16,61 +16,61 @@
   var mediaArr = {};
 
   var pc ;
-  peer.on("open", function (id) {
-    document.getElementById("uuid").textContent = id;
-    myID = id;
+    peer.on("open", function (id) {
+      document.getElementById("uuid").textContent = id;
+      myID = id;
 
-    // var conn;
-    $(document).on('click','.autorecOn', function(){
-        alert('autorec started');
-        
-
-        var callerId;
-
-
-        // start call
-
-        // var myVariable = 'this is a test';
-        var myVariable = 'this is a test';
-        const peerId = document.querySelector("input").value;
-        pc = peer.connect(peerId);
-      
-        var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-        getUserMedia({video: true, audio: true}, function(stream) {
-          const call = peer.call(peerId, stream);
+      // var conn;
+      $(document).on('click','.autorecOn', function(){
+          alert('autorec started');
           
-          currentCall[peer.id] = call;
-          console.log('currentCall');
-          console.log(currentCall);
 
-          var callerVideo = document.createElement('video');
-          call.on('stream', function(remoteStream) {
-            if( document.querySelector("#videoCaller-" + peer.id) != null) {
-              document.querySelector("#videoCaller-" + peer.id).remove(); 
-            }
-           
-            document.getElementById("video-list").appendChild(callerVideo).setAttribute("id", "videoCaller-" + peer.id );
-            callerId = peer.id;
-            callerVideo.srcObject = stream;
-            
-            callerVideo.load();
-            setTimeout(function() {
-              callerVideo.play();
-            }, 0);
-            //callerVideo.play();
-          });
-        });
+          var callerId;
 
+
+          // start call
+
+          // var myVariable = 'this is a test';
+          var myVariable = 'this is a test';
+          const peerId = document.querySelector("input").value;
+          pc = peer.connect(peerId);
         
+          var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+          getUserMedia({video: true, audio: true}, function(stream) {
+            const call = peer.call(peerId, stream);
+            
+            currentCall[peer.id] = call;
+            console.log('currentCall');
+            console.log(currentCall);
 
-        peer.on('close', function(){
-          alert('close text');
-          document.getElementById("videoCaller-" + callerId).remove();
-          peer.destroy();
-          // $("#videoCaller-" + peer.id + '"').remove();
-        });
+            var callerVideo = document.createElement('video');
+            call.on('stream', function(remoteStream) {
+              if( document.querySelector("#videoCaller-" + peer.id) != null) {
+                document.querySelector("#videoCaller-" + peer.id).remove(); 
+              }
+             
+              document.getElementById("video-list").appendChild(callerVideo).setAttribute("id", "videoCaller-" + peer.id );
+              callerId = peer.id;
+              callerVideo.srcObject = stream;
+              
+              callerVideo.load();
+              setTimeout(function() {
+                callerVideo.play();
+              }, 0);
+              //callerVideo.play();
+            });
+          });
 
-   // =======
+          
+
+          peer.on('close', function(){
+            alert('close text');
+            document.getElementById("videoCaller-" + callerId).remove();
+            peer.destroy();
+            // $("#videoCaller-" + peer.id + '"').remove();
+          });
+
+     // =======
     });
 
    // =======
@@ -87,8 +87,8 @@
 
   peer.on('error', function(){
     alert('close text ERROR (internet included)');
-    alert(peer.id);
-    document.querySelector("#videoCaller-" + peer.id).remove();
+    alert(myID);
+    document.querySelector("#videoCaller-" + myID).remove();
     
   });
 
